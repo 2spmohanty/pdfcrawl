@@ -33,7 +33,7 @@ setuptools.setup(
     description="A PDF Search and Extract Tool",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.source.internal.cba/AnalyticsInformation/QualityEngineering/alhomora",
+    url="https://github.com/2spmohanty/pdfcrawl",
     packages=["pdfcrawl"],
     package_dir={
         name: 'pdfcrawl'

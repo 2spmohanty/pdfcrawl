@@ -1,8 +1,6 @@
 __author__ = "Smruti Mohanty"
 
-import logging
 from PyPDF2 import PdfFileReader, PdfFileWriter
-import re
 
 
 def generate_logger(log_level=None, log_file=None):
