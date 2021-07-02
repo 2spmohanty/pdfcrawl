@@ -20,7 +20,7 @@ limitations under the License.
 name = "pdfcrawl"
 version = '0.0.1'
 
-with open("README.rst", "r") as fh:
+with open("../projectpdf/README.rst", "r") as fh:
     long_description = fh.read()
 
 install_requires = ["PyPDF2"]
