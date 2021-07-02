@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pdfcrawl &#8212; pdfcrawl 0.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Parameter" href="parameter.html" />
+    <link rel="prev" title="Welcome to pdfcrawl’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="pdfcrawl">
+<h1>pdfcrawl<a class="headerlink" href="#pdfcrawl" title="Permalink to this headline">¶</a></h1>
+<p><strong>pdfcrawl</strong> utility is meant for searching vast pdf files for certain policy and extract the pages where the match is found.</p>
+<div class="section" id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Installation</p></li>
+</ul>
+<p>The utility can be installed and run in multiple ways.</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p>Get the latest executable from <a class="reference external" href="https://github.com/2spmohanty/pdfcrawl/releases/tag/0.0.1">Release</a> section of GitHub.</p></li>
+<li><p>Get the <strong>.whl</strong> file from <a class="reference external" href="https://github.com/2spmohanty/pdfcrawl/releases/tag/0.0.1">Release</a> section of GitHub. Then install it using pip command.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>pip install pdfcrawl-0.0.1-py3-none-any.whl</p>
+</div>
+</li>
+<li><p>Clone the repo from <a class="reference external" href="https://github.com/2spmohanty/pdfcrawl.git">here</a></p></li>
+</ol>
+</div></blockquote>
+<ul>
+<li><p>Running</p>
+<blockquote>
+<div><ol class="arabic">
+<li><dl>
+<dt><strong>Help</strong></dt><dd><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>usage: app.py [-h] [-d] -f FILES [FILES …] [-l LOGFILE] [-n NUM] -g SEARCH_LIST [SEARCH_LIST …] -s STATE</p>
+<p>A commandline utility to crawl on pdf files.</p>
+<dl>
+<dt>optional arguments:</dt><dd><dl class="option-list">
+<dt><kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></dt>
+<dd><p>show this help message and exit</p>
+</dd>
+<dt><kbd><span class="option">-d</span>, <span class="option">--debug</span></kbd></dt>
+<dd><p>Enable debug output</p>
+</dd>
+<dt><kbd><span class="option">-f</span></kbd></dt>
+<dd><p>FILES [FILES …], –files FILES [FILES …]
+The absolute path to all files separated by white space.</p>
+</dd>
+<dt><kbd><span class="option">-l <var>LOGFILE</var></span>, <span class="option">--log <var>LOGFILE</var></span></kbd></dt>
+<dd><p>Log file name.</p>
+</dd>
+<dt><kbd><span class="option">-n <var>NUM</var></span>, <span class="option">--num <var>NUM</var></span></kbd></dt>
+<dd><p>Number of files to operate on simultaneously. Should not be a number greater than processor in your computer. Default is 4.</p>
+</dd>
+<dt><kbd><span class="option">-g</span></kbd></dt>
+<dd><p>SEARCH_LIST [SEARCH_LIST …], –grep SEARCH_LIST [SEARCH_LIST …]
+Strings to search. The order of the string is preserved.</p>
+</dd>
+<dt><kbd><span class="option">-s <var>STATE</var></span>, <span class="option">--state <var>STATE</var></span></kbd></dt>
+<dd><p>State for which policy needs to be extracted.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div>
+</dd>
+</dl>
+</li>
+</ol>
+</div></blockquote>
+</li>
+</ul>
+<ol class="arabic">
+<li><p><strong>Running the executable.</strong></p>
+<blockquote>
+<div><blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>pdfcrawl -f <em>“pdf_file1”,”pdf_file2”,pdf_file3</em> -g <em>Headline of Insurance Document</em> -s <em>state</em></p>
+</div>
+</div></blockquote>
+<ol class="arabic">
+<li><p><strong>Running from source code.</strong></p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>C:Workspace&gt; python -m pdfcrawl.pdfcrawl.app -f <em>“pdf_file1”,”pdf_file2”,pdf_file3</em> -g <em>Headline of Insurance Document</em> -s <em>state</em></p>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">pdfcrawl</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">pdfcrawl</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parameter.html">Parameter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html">Release Notes</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to pdfcrawl’s documentation!</a></li>
+      <li>Next: <a href="parameter.html" title="next chapter">Parameter</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Anesh.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.1.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/usage.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
