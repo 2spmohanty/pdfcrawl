@@ -18,7 +18,7 @@ version = """
  | |_) | (_| | |   | (__| | | (_| |\ V  V /| | 
  | .__/ \__,_|_|    \___|_|  \__,_| \_/\_/ |_| 
  | |                                           
- |_|                 0.0.3                                           
+ |_|                 0.0.4                                           
 
 """
 
@@ -87,13 +87,13 @@ def main():
     pdf_file_list = []
     input_paths = [f.rstrip("\\") for f in opts.files]  # Remove a \ from extreme rght of path
     for input_path in input_paths:
-        if os.path.isfile(input_path) and input_path.endswith('.pdf'):
+        if os.path.isfile(input_path) and (input_path.endswith('.pdf') or input_path.endswith('.PDF')):
             pdf_file_list.append(input_path)
         elif os.path.isdir(input_path):
             for root, dirs, input_files in os.walk(input_path):
                 for input_file in input_files:
-                    if input_file.endswith('.pdf'):
-                        pdf_file_list.append(input_path + "/" + input_file)
+                    if input_file.endswith('.pdf') or input_file.endswith('.PDF'):
+                        pdf_file_list.append(input_path + "\\" + input_file)
         else:
             logger.error("THREAD - main - The utility works on PDF files only.")
             raise NotImplementedError("pdfcrawl - Exception - The Utility only works with PDF files")
@@ -109,11 +109,15 @@ def main():
         grep_string = ".*?".join(search.split())
         header = r".*?{}\s*\b[a-zA-z0-9]{{1}}\b\s*\n*.*?Policy number:\n*([A-Z\s0-9]+?)\n+.*?{}.*?Page\s+1\s+of\s+(\d+).*".format(
             grep_string, state)
+        pass_string = ".*?Page\s*1\s*?of\s*?(\d+).*?{}.*?".format(grep_string)
+        pass_policy_summary = r"YOUR\s+POLICY\s+SUMMARY.*?Policy number:.*?([A-Z]+.*?\d+)?\n*[a-zA-Z]+.*?{}.*".format(state)
+        pass_regex_item = re.compile(r"{}{}".format(pass_string, pass_policy_summary),re.DOTALL)
+
         result_file = "_".join(search.split()) + "_{}".format(state) + ".pdf"
 
         logger.debug("THREAD - main - Regular Expression String {}".format(header))
         regex_object = re.compile(header, re.DOTALL)
-        header_regex_dict[result_file] = regex_object
+        header_regex_dict[result_file] = (regex_object, pass_regex_item)
 
     ##### 0.0.3 Create Search Based on Search String ############
     """

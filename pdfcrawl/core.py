@@ -121,16 +121,26 @@ def simple_search(logger, pdf_file, pdf_regex_dict):
     extract_file_first_page = {}
 
     try:
-
         with open(pdf_file, 'rb') as fin:
             pdf = PdfFileReader(fin)
             total_pages = pdf.getNumPages()
-            logger.info("THREAD - simple_search - {} - Will read {} pages.".format(pdf_file,total_pages))
+            logger.info("THREAD - simple_search - {} - Will read {} pages.".format(pdf_file, total_pages))
             for page_number in range(total_pages):
-                text = extract_text(fin, page_numbers=[page_number], laparams=LAParams())
-                for extract_file, search_regex in regex_dict.items():
+
+                #logger.debug("THREAD - simple_search - {} - Page Number {}".format(pdf_file, page_number))
+                page_content = pdf.getPage(page_number)
+                page_text = page_content.extractText()  # This text extract from pdf is not properly formatted. Only used for pass regex
+                extracted_text = None  # This is properly formatted.
+                for extract_file, search_regex_list in regex_dict.items():
                     pdfWriter = None
-                    first_page_matched = search_regex.match(text)
+                    pass_regex = search_regex_list[1]
+                    pass_regex_matched = pass_regex.match(page_text)
+                    if not pass_regex_matched:
+                        continue
+                    search_regex = search_regex_list[0]
+                    if not extracted_text:
+                        extracted_text = extract_text(fin, page_numbers=[page_number], laparams=LAParams())
+                    first_page_matched = search_regex.match(extracted_text)
                     if first_page_matched:
                         pdfWriter = PdfFileWriter()
                         policy_number = (first_page_matched.group(1))
@@ -139,7 +149,6 @@ def simple_search(logger, pdf_file, pdf_regex_dict):
                                     "Policy Number: {}. "
                                     "Total Page to be extracted: {}.".format(pdf_file, extract_file,
                                                                              page_number, policy_number, total_pages))
-
 
                         for matched_page_number in range(page_number, page_number + total_pages):
                             logger.debug(
@@ -163,6 +172,6 @@ def simple_search(logger, pdf_file, pdf_regex_dict):
                         finally:
                             pdfOutput.close()
     except Exception as e:
-        logger.error("THREAD - simple_search - Error while reading file")
+        logger.error("THREAD - simple_search - Error while reading file %s" % e)
 
     return extract_file_first_page
