@@ -18,7 +18,7 @@ limitations under the License.
 """
 
 name = "pdfcrawl"
-version = '0.0.1'
+version = '0.0.3'
 
 with open("../projectpdf/README.rst", "r") as fh:
     long_description = fh.read()
